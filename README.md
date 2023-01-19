@@ -1,1 +1,2 @@
-This is test project with hero admin panel!
+It's Your Own Home Library!
+Now you can keep track of the books in your home library in electronic format. You have the ability to add and remove books from the list. On the bookshelves tab, you can drag books to different shelves according to their reading status, and double-click to find out information about the book. Also for big fans of reading we offer two challenges - Bingo and Alphabet. Bingo challenge is 25 book tasks, completing which you can turn over the cards and make them colored. Alphabet challenge - the task is to collect books for each letter of the alphabet. The program will automatically substitute titles from the list of books read.
