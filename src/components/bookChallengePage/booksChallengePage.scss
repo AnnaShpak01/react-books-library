@@ -1,0 +1,234 @@
+/**
+ * Tabs Block
+ */
+.tabs-block {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/**
+ * Tabs
+ */
+.tabs {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	box-shadow: 0 1rem 3rem rgb(0 0 0 / 18%);
+	border: 1px solid #6a5126;
+
+	.first-label{
+		border-left:none;
+	}
+
+	.last-label{
+		border-right:none;
+	}
+	
+}
+
+.tabs label {
+	width: 49.85%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 1rem 2rem;
+	cursor: pointer;
+	background-color: antiquewhite;
+	color: #333;
+	border: 1px solid antiquewhite;
+	font-family: Roboto, sans-serif;
+	font-size: 1.2rem;
+	font-weight: 700;
+	transition: background-color ease 0.3s;
+
+	@media(max-width:767px){
+		padding:10px;
+		font-size:12px;
+	}
+}
+
+.tabs label .material-icons {
+	margin-right: 0.3rem;
+}
+
+.tabs .tab {
+	flex-grow: 1;
+	width: 100%;
+	height: 100%;
+	display: none;
+	padding: 4rem 2rem 1rem;
+	color: #000;
+	background-color: #efdabf;
+	border-top:none;
+	
+	@media(max-width:767px){
+		padding:10px;
+	}
+
+}
+
+.tabs .tab > *:not(:last-child) {
+	margin-bottom: 0.8rem;
+}
+
+.tabs [type=radio] {
+	display: none;
+}
+
+.tabs [type=radio]:checked + label {
+	background-color: #efdabf;
+	color: #000;
+	
+}
+
+.tabs [type=radio]:checked + label + .tab {
+	display: block;
+}
+
+@media(max-width:767px){
+	.tabs label {
+		order: 1;
+		width: 50%;
+		border: 1px solid #6a5126;
+		border-top: none;
+	}
+	.tabs .tab {
+		order: 9;
+	}
+	.tabs [type=radio]:checked + label {
+		border: none;
+	}
+}
+
+@media (min-width: 768px) {
+
+	body {
+		font-size: 1.125rem;
+	}
+
+	.tabs label {
+		order: 1;
+		width: 50%;
+		border: 1px solid #6a5126;
+		border-top: none;
+	}
+
+	.tabs .tab {
+		order: 9;
+	}
+
+	.tabs [type=radio]:checked + label {
+		border: none;
+	}
+}
+@media (min-width: 992px) {
+
+	.tabs {
+		width: 800px;
+	}
+}
+
+
+
+.books-challenge-page{
+
+    .bingo-cards-wrapper{
+        display:flex;
+		flex-wrap: wrap;
+    }
+
+	.bingo-card{
+		width: 20%;
+		display:flex;
+	}
+
+    .flip-card {
+		background-color: transparent;
+		width: 100%;
+		height: 130px;
+		border: 1px solid #efdabf;
+		perspective: 1000px; /* Remove this if you don't want the 3D effect */
+	}
+	  
+	  /* This container is needed to position the front and back side */
+	  .flip-card-inner {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		text-align: center;
+		transition: transform 0.8s;
+		transform-style: preserve-3d;
+	  }
+	  
+	  /* Do an horizontal flip when you move the mouse over the flip box container */
+	  .flip-card-inner.is-flipped  {
+		transform: rotateY(180deg);
+	  }
+	  
+	  /* Position the front and back side */
+	  .flip-card-front, .flip-card-back {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		-webkit-backface-visibility: hidden; /* Safari */
+		backface-visibility: hidden;
+		cursor:pointer;
+		@media(max-width:767px){
+			font-size:12px;
+			padding:3px;
+		}
+	  }
+	  
+	  /* Style the front side (fallback if image is missing) */
+	  .flip-card-front {
+		background-color: #fcf7f1;
+		padding: 5px;
+		border: 1px solid #555;
+		color: black;
+		font-weight: 600;
+		display:flex;
+		justify-content:center;
+		align-items: center;
+	  }
+	  
+	  /* Style the back side */
+	  .flip-card-back {
+		padding: 5px;
+		border: 1px solid #555;
+		color: black;
+		font-weight: 600;
+		transform: rotateY(180deg);
+		display:flex;
+		justify-content:center;
+		align-items: center;
+	  }
+
+	  .line-alpha{
+		display:flex;
+		align-items: baseline;
+	  }
+
+	  .title-book{
+		font-weight: 600;
+		font-size: 20px;
+	  }
+	  .book-row{
+		margin-left:2px;
+	  }
+	  .alfa-row{
+		display: flex;
+
+		@media(max-width:767px){
+			display:block;
+		}
+	  }
+	  .alfa-col{
+		width:50%;
+		padding:5px;
+
+		@media(max-width:767px){
+			width:100%;
+		}
+	  }
+}

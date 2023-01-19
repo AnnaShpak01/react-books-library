@@ -1,0 +1,80 @@
+.app {
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        padding:20px 20px;
+        background-color: antiquewhite;
+        margin-bottom:20px;
+        border-bottom: 1px solid #6a5126;
+        align-items: center;
+
+        @media(max-width:767px){
+            display:block;
+        }
+
+        .logo{
+            width: 30px;
+            height: 30px;
+            background-image: url('../../img/book-png-17.jpg');
+            background-size: cover;
+            display: inline-block;
+            margin-right:5px;
+
+            @media(max-width:767px){
+                display:block;
+            }
+        }
+
+        a{
+            font-family: ui-sans-serif;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        a, a:hover, a:focus{
+            color: #6a5126;
+        }
+    }
+    &__title {
+        font-weight: bold;
+        font-size: 28px;
+        line-height: 37px;
+        margin-bottom:0;
+
+        @media(max-width:767px){
+           margin-bottom:10px;
+        }
+        
+    }
+    &__menu {
+        ul {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            font-size: 24px;
+            line-height: 32px;
+            margin-bottom:0;
+            color: rgb(164 143 122);
+
+            @media(max-width:767px){
+                justify-content: unset;
+            }
+            li {
+                margin: 0 8px;
+                list-style-type: none;
+                a{
+                    color: burlywood;
+                    @media(max-width:767px){
+                        font-size:16px;
+                    }
+                }
+                a.active{
+                    color:#6a5126;
+                }
+                a:hover {
+                    color: #6a5126;
+                }
+            }
+        }
+    }
+}
