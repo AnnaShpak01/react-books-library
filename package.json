@@ -16,7 +16,8 @@
     "react-router-dom": "^6.4.5",
     "react-scripts": "4.0.3",
     "react-transition-group": "^4.4.5",
-    "redux-thunk": "^2.4.1",
+    "redux": "^4.2.1",
+    "redux-thunk": "^2.4.2",
     "sass": "^1.43.2",
     "uuid": "^8.3.2"
   },
@@ -42,6 +43,8 @@
     ]
   },
   "devDependencies": {
+    "@types/react-transition-group": "^4.4.5",
+    "@types/uuid": "^9.0.1",
     "classnames": "^2.3.1"
   }
 }

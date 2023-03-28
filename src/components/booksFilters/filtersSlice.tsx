@@ -1,7 +1,11 @@
 import { createSlice, createAsyncThunk, createEntityAdapter } from "@reduxjs/toolkit";
 import {useHttp} from '../../hooks/http.hook';
+import { actionsTypes } from "../../reducers";
+import {InitStateType, FiltersType, FiltersActionType, FiltersTypeAction} from '../../reducers/filters'
 
 const filtersAdapter = createEntityAdapter();
+
+
 
 const initialState = filtersAdapter.getInitialState({
     filtersLoadingStatus: 'idle',
@@ -42,7 +46,7 @@ const {actions, reducer} = filtersSlice;
 
 export default reducer;
 
-export const {selectAll} = filtersAdapter.getSelectors(state => state.filters);
+export const {selectAll} = filtersAdapter.getSelectors((state:FiltersType) => state.filters);
 
 export const {
     filtersFetching,

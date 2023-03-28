@@ -2,8 +2,13 @@ import { configureStore } from '@reduxjs/toolkit';
 import filters from '../components/booksFilters/filtersSlice';
 import { bingoSlice } from '../components/bookChallengePage/bingoSlice';
 import { apiSlice } from '../api/apiSlice'; 
+import {actionsTypes} from '../reducers/index'
 
-const stringMiddleware = () => (next) => (action) => {
+interface nextType {
+    (type: actionsTypes):actionsTypes
+}
+
+const stringMiddleware = () => (next:nextType) => (action:actionsTypes) => {
     if (typeof action === 'string') {
         return next({
             type: action

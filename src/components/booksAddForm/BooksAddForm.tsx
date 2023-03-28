@@ -5,16 +5,26 @@ import store from '../../store';
 
 import { selectAll } from '../booksFilters/filtersSlice';
 import { useCreateBookMutation } from '../../api/apiSlice';
+import React from 'react';
+
+type FilterType = {
+    id: string
+    name: string
+    label: string
+    className: string
+}
+
+
 
 const BooksAddForm = () => {
-    const [bookName, setBookName] = useState('');
-    const [bookDescr, setBookDescr] = useState('');
-    const [bookAuthor, setBookAuthor] = useState('');
-    const [bookGenre, setBookGenre] = useState('');
-    const [bookColor, setBookColor] = useState('');
-    const [bookStatus, setBookStatus] = useState('');
-    const [bookPages, setBookPages] = useState('');
-    const [bookImg, setBookImg] = useState('');
+    const [bookName, setBookName] = useState<string>('');
+    const [bookDescr, setBookDescr] = useState<string>('');
+    const [bookAuthor, setBookAuthor] = useState<string>('');
+    const [bookGenre, setBookGenre] = useState<string>('');
+    const [bookColor, setBookColor] = useState<string>('');
+    const [bookStatus, setBookStatus] = useState<string>('');
+    const [bookPages, setBookPages] = useState<number>(0);
+    const [bookImg, setBookImg] = useState<string>('');
 
     const [createBook] = useCreateBookMutation();
 
@@ -43,11 +53,11 @@ const BooksAddForm = () => {
         setBookColor('');
         setBookGenre('');
         setBookImg('');
-        setBookPages('');
+        setBookPages(0);
         setBookStatus('');
     }
 
-    const renderFilters = (filters, status) => {
+    const renderFilters = (filters:FilterType[], status:string) => {
         if (status === "loading") {
             return <option>Loading of elements</option>
         } else if (status === "error") {
@@ -55,7 +65,7 @@ const BooksAddForm = () => {
         }
         
         if (filters && filters.length > 0 ) {
-            return filters.map(({name, label}) => {
+            return filters.map(({name, label}:{name:string, label:string}) => {
                 // eslint-disable-next-line
                 if (name === 'all')  return;
 

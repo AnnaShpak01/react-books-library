@@ -1,4 +1,15 @@
-const BooksListItem = ({name, author, genre, pages, status, element, onDelete}) => {
+import React from "react"
+
+type BookItemType = {
+    name:string
+    author: string
+    genre: string
+    pages: number
+    status: string
+    onDelete : () => void
+}
+
+const BooksListItem = ({name, author, genre, pages, status, onDelete}:BookItemType) => {
 
     return (
         <div className={`card-of-book`}>

@@ -2,6 +2,7 @@ import BooksList from "../booksList/BooksList"
 import BooksAddForm from "../booksAddForm/BooksAddForm"
 import BooksFilters from "../booksFilters/BooksFilters"
 import "./booksPage.scss"
+import React from "react"
 
 const BooksPage = () => {
     return(

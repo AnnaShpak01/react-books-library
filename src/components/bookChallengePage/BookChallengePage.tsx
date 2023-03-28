@@ -1,3 +1,4 @@
+import React from "react";
 import AlphabetChallenge from "./AlphabetChallenge";
 import BingoPage from "./BingoPage";
 import "./booksChallengePage.scss";
@@ -9,7 +10,8 @@ const BookChallengePage = () => {
 				<div className="tabs-container">
 					<div className="tabs-block">
 						<div className="tabs bordered">
-							<input type="radio" name="tabs" id="tab1" defaultChecked="checked" />
+							<input type="radio" name="tabs" id="tab1" /> 
+							{/* defaultChecked="checked"  */}
 							<label htmlFor="tab1" className="first-label"> Bingo Challenge</label>
 							<div className="tab">
                                 {<BingoPage />}

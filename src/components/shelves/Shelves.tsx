@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useMemo } from "react";
 import { useGetBooksQuery, useUpdateBookMutation } from '../../api/apiSlice';
-
+import { BookType } from "../../reducers/books";
 
 const Shelves = () => {
     const {
@@ -17,22 +17,22 @@ const Shelves = () => {
  useEffect(() => {  
      bindModal('.card', '.popup_engineer', '.popup_engineer .popup_close');
    });
-  const onDragStart = (evt) => {
+  const onDragStart = (evt:any) => {
      let element = evt.currentTarget;
      element.classList.add("dragged");
      evt.dataTransfer.setData("text/plain", evt.currentTarget.id);
      evt.dataTransfer.effectAllowed = "move";
    };
-   const onDragEnd = (evt) => {
+   const onDragEnd = (evt:any) => {
      evt.currentTarget.classList.remove("dragged");
    };
-   const onDragEnter = (evt) => {
+   const onDragEnter = (evt:any) => {
      evt.preventDefault();
      let element = evt.currentTarget;
      element.classList.add("dragged-over");
      evt.dataTransfer.dropEffect = "move";
    };
-   const onDragLeave = (evt) => {
+   const onDragLeave = (evt:any) => {
      let currentTarget = evt.currentTarget;
      let newTarget = evt.relatedTarget;
      if (newTarget.parentNode === currentTarget || newTarget === currentTarget)
@@ -41,15 +41,15 @@ const Shelves = () => {
      let element = evt.currentTarget;
      element.classList.remove("dragged-over");
    };
-   const onDragOver = (evt) => {
+   const onDragOver = (evt:any) => {
      evt.preventDefault();
      evt.dataTransfer.dropEffect = "move";
    };
-   const onDrop = (evt, value, newStatus) => {
+   const onDrop = (evt:any, value:boolean, newStatus:string) => {
      evt.preventDefault();
      evt.currentTarget.classList.remove("dragged-over");
      let data = evt.dataTransfer.getData("text/plain");
-     shelves.map((shelf) => {
+     shelves.map((shelf:BookType) => {
        if (shelf.id.toString() === data.toString()) {
         updateBook({...shelf ,status: newStatus});
            return {...shelf ,status: newStatus}
@@ -59,18 +59,18 @@ const Shelves = () => {
      });
    };
  
-  const bindModal = (triggerSelector, modalSelector, closeSelector) => {
-    const trigger = document.querySelectorAll(triggerSelector),
-          modal = document.querySelector(modalSelector),
-          close = document.querySelector(closeSelector),
-          intro = document.querySelector('#intro');
+  const bindModal = (triggerSelector:string, modalSelector:string, closeSelector:string) => {
+    const trigger:any = document.querySelectorAll(triggerSelector),
+          modal:any = document.querySelector(modalSelector),
+          close:any = document.querySelector(closeSelector),
+          intro:any = document.querySelector('#intro');
 
-    trigger.forEach(item => {
-        item.addEventListener('dblclick', (e) => {
+    trigger.forEach((item:HTMLElement) => {
+        item.addEventListener('dblclick', (e: Event) => {
             if (e.target) {
                 e.preventDefault();
             }
-             let showShelf = shelves.find(shelf => shelf.id === item.id)
+            let showShelf = shelves.find((shelf: BookType) => shelf.id === item.id)
             intro.innerHTML=`
             <img class= "pic" src='${showShelf.imgsrc}'></div>
             <div class="book-name"> ${showShelf.name} </div>
@@ -87,7 +87,7 @@ const Shelves = () => {
         document.body.style.overflow = "";
     });
 
-    modal.addEventListener('click', (e) => {
+    modal.addEventListener('click', (e: Event) => {
         if (e.target === modal) {
             modal.style.display = "none";
             document.body.style.overflow = ""; 
@@ -95,7 +95,7 @@ const Shelves = () => {
     });
 }
 
-   const shelfForBook = (classType, statusshelf, headlabel, arrBook) =>{
+   const shelfForBook = (classType:string, statusshelf:string, headlabel:string, arrBook: BookType[]) =>{
      return(
      <div
        className={`${classType} small-box`}
@@ -111,7 +111,7 @@ const Shelves = () => {
            <div className="drag_column">
              <div className="drag_row">
                
-               {arrBook.map((book) => (
+               {arrBook.map((book:BookType) => (
                  <div
                  className={'card ' + book.color}
                    key={book.name}
@@ -134,10 +134,10 @@ const Shelves = () => {
    }
   
     
-     let pending = shelves.filter((data) => data.status === "In Progress");
-     let done = shelves.filter((data) => data.status === "Completed");
-     let newOrder = shelves.filter((data) => data.status === "New Books");
-     let waiting = shelves.filter((data) => data.status === "Favourites");
+     let pending = shelves.filter((data:BookType) => data.status === "In Progress");
+     let done = shelves.filter((data:BookType) => data.status === "Completed");
+     let newOrder = shelves.filter((data:BookType) => data.status === "New Books");
+     let waiting = shelves.filter((data:BookType) => data.status === "Favourites");
     
      return (
        <div className="container">

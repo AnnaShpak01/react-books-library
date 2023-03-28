@@ -1,6 +1,17 @@
-const BingoCard = (id, side, color, status, bingoClass, updateBingo ) => {
+import React from "react";
 
-    const onClickCard = (e) => {
+export type BingoTypeCard={
+  id: number
+  side: string
+  color: string
+  status: boolean
+  bingoClass: string
+  updateBingo: ({}) => void
+}
+
+const BingoCard = ({id, side, color, status, bingoClass, updateBingo}: BingoTypeCard ) => {
+
+    const onClickCard = () => {
       updateBingo({task: side, color, status: !status, id})
     }
 

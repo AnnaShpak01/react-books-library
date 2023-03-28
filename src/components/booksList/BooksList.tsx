@@ -1,13 +1,21 @@
 import { useCallback, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { CSSTransition, TransitionGroup} from 'react-transition-group';
-
+import {BookType,InintialBooksType} from '../../reducers/books'
+import { InitStateType } from '../../reducers/filters';
 import { useGetBooksQuery, useDeleteBookMutation} from '../../api/apiSlice';
 
 import BooksListItem from "../booksListItem/BooksListItem";
 import Spinner from '../spinner/Spinner';
 
 import './booksList.scss';
+import React from 'react';
+
+type BookQuery = {
+    data: BookType[]
+    isLoading: boolean
+    isError:boolean
+}
 
 const BooksList = () => {
     const {
@@ -17,7 +25,7 @@ const BooksList = () => {
     } = useGetBooksQuery();
     const [deleteBook] = useDeleteBookMutation();
 
-    const activeFilter = useSelector(state => state.filters.activeFilter);
+    const activeFilter = useSelector((state:any) => state.filters.activeFilter);
 
     const filteredBooks = useMemo(() => {
         const filteredBooks = books.slice();
@@ -25,7 +33,7 @@ const BooksList = () => {
         if (activeFilter === 'all') {
             return filteredBooks;
         } else {
-            return filteredBooks.filter(item => item.status === activeFilter);
+            return filteredBooks.filter((item: BookType) => item.status === activeFilter);
         }
     }, [books, activeFilter]);
 
@@ -40,7 +48,7 @@ const BooksList = () => {
         return <h5 className="text-center mt-5">Loading error</h5>
     }
 
-    const renderBooksList = (arr) => {
+    const renderBooksList = (arr:BookType[]) => {
         if (arr.length === 0) {
             return (
                 <CSSTransition
