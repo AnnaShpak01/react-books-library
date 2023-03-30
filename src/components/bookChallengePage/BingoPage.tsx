@@ -1,39 +1,34 @@
-
-import {useMemo} from 'react';
-import classNames from 'classnames';
+import classNames from "classnames";
 import BingoCard from "./BingoCard";
-import { useGetBingoQuery, useUpdateBingoMutation } from '../../api/apiSlice';
+import { useGetBingoQuery, useUpdateBingoMutation } from "../../api/apiSlice";
+import { BingoType } from "../../reducers/bingo";
 
 const BingoPage = () => {
-    const {
-        data: bingo = [],
-      } = useGetBingoQuery();
-    const [updateBingo] = useUpdateBingoMutation();
-    const bingoCards = useMemo(() => {
-          return bingo.slice();
-    }, [bingo]);
+  const { data: bingo = [] } = useGetBingoQuery("Bingo");
+  const [updateBingo] = useUpdateBingoMutation();
 
-    const renderBingo = (arr) => {
-        if (arr.length === 0) {
-            return <h5 className="text-center mt-5">Bingo no founded</h5>
-        }
+  return (
+    <div className="bingo-cards-wrapper">
+      {bingo.length === 0 && (
+        <h5 className="text-center mt-5">Bingo no founded</h5>
+      )}
+      {bingo.length > 0 &&
+        bingo.map((item: BingoType) => {
+          const bingoClass = classNames("flip-card-inner", {
+            "is-flipped": item.status === true,
+          });
 
-        return arr.map((item) => {
-            const bingoClass = classNames('flip-card-inner', {
-                'is-flipped': item.status === true
-            });
-            
-            return(BingoCard(item.id, item.task, item.color, item.status, bingoClass, updateBingo))
-        })
-    }
-
-    const elements = renderBingo(bingoCards);
-
-    return (
-            <div className='bingo-cards-wrapper'>
-                {elements}
-            </div>
-    )
-}
+          return BingoCard({
+            id: parseInt(item.id),
+            side: item.task,
+            color: item.color,
+            status: item.status,
+            bingoClass: bingoClass,
+            updateBingo,
+          });
+        })}
+    </div>
+  );
+};
 
 export default BingoPage;

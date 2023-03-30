@@ -1,64 +1,58 @@
-import {useHttp} from '../../hooks/http.hook';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import classNames from 'classnames';
-import store from '../../store';
-import { InitStateType, FiltersType } from '../../reducers/filters';
-
-import { filtersChanged, fetchFilters, selectAll } from './filtersSlice';
-import Spinner from '../spinner/Spinner';
-import React from 'react';
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import classNames from "classnames";
+import { FiltersType, InitStateType } from "../../reducers/filters";
+import { filtersChanged, fetchFilters } from "./filtersSlice";
+import Spinner from "../spinner/Spinner";
+import { useGetFiltersQuery } from "../../api/apiSlice";
 
 const BooksFilters = () => {
+  const { filtersLoadingStatus, activeFilter } = useSelector(
+    (state: InitStateType) => state
+  );
+  const { data: filters = [] } = useGetFiltersQuery("Filters");
+  const dispatch = useDispatch();
 
-    const {filtersLoadingStatus, activeFilter} = useSelector((state:InitStateType) => state.filters);
-    const filters = selectAll(store.getState());
-    const dispatch = useDispatch();
-    const {request} = useHttp();
+  useEffect(() => {
+    dispatch(fetchFilters());
+    // eslint-disable-next-line
+  }, []);
 
-    useEffect(() => {
-        dispatch(fetchFilters(request));
-        // eslint-disable-next-line
-    }, []);
+  if (filtersLoadingStatus === "loading") {
+    return <Spinner />;
+  } else if (filtersLoadingStatus === "error") {
+    return <h5 className="text-center mt-5">Loading Error</h5>;
+  }
 
-    if (filtersLoadingStatus === "loading") {
-        return <Spinner/>;
-    } else if (filtersLoadingStatus === "error") {
-        return <h5 className="text-center mt-5">Loading Error</h5>
-    }
+  return (
+    <div className=" shadow-lg mb-4 rounded bordered">
+      <div className="card-body centered-intro rounded">
+        <p className="card-text filters-label">Filter by status</p>
+        <div className="btn-group filters-block bordered rounded">
+          {filters.length === 0 && (
+            <h5 className="text-center mt-5">Filters no founded</h5>
+          )}
+          {filters.length > 0 &&
+            filters.map((item: FiltersType) => {
+              const btnClass = classNames("btn", {
+                active: item.name === activeFilter,
+              });
 
-    const renderFilters = (arr:FiltersType[]) => {
-        if (arr.length === 0) {
-            return <h5 className="text-center mt-5">Filters no founded</h5>
-        }
-
-        return arr.map(({name, label}) => {
-
-            const btnClass = classNames('btn', {
-                'active': name === activeFilter
-            });
-            
-            return <button 
-                        key={name} 
-                        id={name} 
-                        className={btnClass}
-                        onClick={() => dispatch(filtersChanged(name))}
-                        >{label}</button>
-        })
-    }
-
-    const elements = renderFilters(filters);
-
-    return (
-        <div className=" shadow-lg mb-4 rounded bordered">
-            <div className="card-body centered-intro rounded">
-                <p className="card-text filters-label">Filter by status</p>
-                <div className="btn-group filters-block bordered rounded">
-                    {elements}
-                </div>
-            </div>
+              return (
+                <button
+                  key={item.name}
+                  id={item.name}
+                  className={btnClass}
+                  onClick={() => dispatch(filtersChanged(item.name))}
+                >
+                  {item.label}
+                </button>
+              );
+            })}
         </div>
-    )
-}
+      </div>
+    </div>
+  );
+};
 
 export default BooksFilters;

@@ -1,69 +1,68 @@
 .app {
-    height: 100vh;
-    overflow-y: scroll;
-    padding-bottom:20px;
-    background-image: url('../../img/paper-1074131_1280.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
+  height: 100vh;
+  overflow-y: scroll;
+  padding-bottom: 20px;
+  background-image: url("../../img/paper-1074131_1280.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .bordered {
-    border: 1px solid #6a5126 !important;
+  border: 1px solid #6a5126 !important;
 }
 
-h4{
-    font-size:14px !important;
+h4 {
+  font-size: 14px !important;
 }
 
 .content {
-    max-width: 1040px;
-    margin: 0 auto;
+  max-width: 1040px;
+  margin: 0 auto;
 
-    @media(max-width:1199px){
-        max-width: 970px;
+  @media (max-width: 1199px) {
+    max-width: 970px;
+  }
+  @media (max-width: 991px) {
+    max-width: 760px;
+    padding: 5px;
+  }
+
+  &__interactive {
+    padding-left: 40px;
+    @media (max-width: 1199px) {
+      padding-left: 20px;
     }
-    @media(max-width:991px){
-        max-width: 760px;
-        padding:5px;
+    @media (max-width: 991px) {
+      padding-left: 0;
+      padding-top: 20px;
     }
 
-    &__interactive {
-        padding-left: 40px;
-        @media(max-width:1199px){
-            padding-left:20px;
+    form {
+      min-width: 350px;
+      background-color: #d8bb9d;
+
+      @media (max-width: 767px) {
+        min-width: unset;
+        padding: 10px !important;
+
+        label {
+          font-size: 12px !important;
         }
-        @media(max-width:991px){
-            padding-left:0;
-            padding-top:20px;
-        }
-
-
-        form{
-            min-width:350px;
-            background-color: #d8bb9d;
-
-            @media(max-width:767px){
-                min-width:unset;
-                padding: 10px !important;
-
-                label{
-                    font-size:12px !important;
-                }
-            }
-        }
+      }
     }
+  }
 }
 
-@media(max-width:991px){
-    .container{
-        padding: 0 30px;
-        max-width: unset !important; 
-    }
+@media (max-width: 991px) {
+  .container {
+    padding: 0 30px;
+    max-width: unset !important;
+  }
 }
 
-@media(max-width:767px){
-    .container{
-        padding: 0 10px;
-        max-width: unset !important; 
-    }
+@media (max-width: 767px) {
+  .container {
+    padding: 0 10px;
+    max-width: unset !important;
+  }
 }

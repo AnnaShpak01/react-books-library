@@ -1,11 +1,8 @@
-import React from "react";
 import Shelves from "../shelves/Shelves";
-import './bookShelvesPage.scss';
+import "./bookShelvesPage.scss";
 
 const BookShelvesPage = () => {
-    return (
-      <Shelves/>
-    );
-}
+  return <Shelves />;
+};
 
 export default BookShelvesPage;

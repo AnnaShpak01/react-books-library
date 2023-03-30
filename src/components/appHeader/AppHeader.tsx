@@ -1,4 +1,3 @@
-import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./appHeader.scss";
 
@@ -38,7 +37,6 @@ const AppHeader = () => {
           |
           <li>
             <NavLink
-              
               style={({ isActive }) => ({
                 color: isActive ? "#6a5126" : "rgb(164 143 122)",
               })}
@@ -47,7 +45,6 @@ const AppHeader = () => {
               Challenges
             </NavLink>
           </li>
-         
         </ul>
       </nav>
     </header>

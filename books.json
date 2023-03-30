@@ -67,7 +67,7 @@
       "id": "5"
     },
     {
-      "status": "Completed",
+      "status": "New Books",
       "name": "Peter Pan",
       "author": "J.M. Barrie",
       "description": "Almost everyone knows the story of “Peter Pan” which is why this is an easy read. Being familiar with a story already helps the reader to understand the text better. This book is aimed at children, but it continues to be enjoyed by adults around the world too.",
@@ -122,15 +122,15 @@
       "id": "8cd421e7-9255-447a-b787-a85bcc3c7cbb"
     },
     {
-      "id": "9e997f1f-1c41-41c4-a70b-c1c96b6bc8db",
       "name": "Fairy Tale",
       "author": "Stephen King",
       "description": "Charlie Reade looks like a regular high school kid, great at baseball and football, a decent student. But he carries a heavy load. His mom was killed in a hit-and-run accident when he was seven, and grief drove his dad to drink. Charlie learned how to take care of himself—and his dad. When Charlie is seventeen, he meets a dog named Radar and her aging master, Howard Bowditch, a recluse in a big house at the top of a big hill, with a locked shed in the backyard. Sometimes strange sounds emerge from it.\nCharlie starts doing jobs for Mr. Bowditch and loses his heart to Radar. Then, when Bowditch dies, he leaves Charlie a cassette tape telling a story no one would believe. What Bowditch knows, and has kept secret all his long life, is that inside the shed is a portal to another world.",
       "genre": "thriller",
-      "status": "New Books",
+      "status": "Completed",
       "color": "blue",
       "imgsrc": "https://m.media-amazon.com/images/I/51ECRZXoGyL._SX327_BO1,204,203,200_.jpg",
-      "pages": "608"
+      "pages": "608",
+      "id": "9e997f1f-1c41-41c4-a70b-c1c96b6bc8db"
     }
   ],
   "filters": [
@@ -211,7 +211,7 @@
     {
       "task": "A book by a Black author",
       "color": "#9370DB",
-      "status": false,
+      "status": true,
       "id": "8"
     },
     {
@@ -265,7 +265,7 @@
     {
       "task": "A book involving travel",
       "color": "#EEE8AA",
-      "status": false,
+      "status": true,
       "id": "17"
     },
     {
