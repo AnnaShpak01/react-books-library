@@ -14,40 +14,44 @@ const Shelves = () => {
   useEffect(() => {
     bindModal(".card", ".popup_engineer", ".popup_engineer .popup_close");
   });
-  const onDragStart = (evt: any) => {
-    let element = evt.currentTarget;
-    element.classList.add("dragged");
-    evt.dataTransfer.setData("text/plain", evt.currentTarget.id);
-    evt.dataTransfer.effectAllowed = "move";
+  const onDragStart = (evt: DragEvent) => {
+    let element = evt.currentTarget as Element;
+    element?.classList.add("dragged");
+    if (evt.dataTransfer && evt.currentTarget) {
+      evt.dataTransfer.setData("text/plain", element.id);
+      evt.dataTransfer.effectAllowed = "move";
+    }
   };
-  const onDragEnd = (evt: any) => {
-    evt.currentTarget.classList.remove("dragged");
+  const onDragEnd = (evt: DragEvent) => {
+    let element = evt.currentTarget as Element;
+    element.classList.remove("dragged");
   };
-  const onDragEnter = (evt: any) => {
+  const onDragEnter = (evt: DragEvent) => {
     evt.preventDefault();
-    let element = evt.currentTarget;
+    let element = evt.currentTarget as Element;
     element.classList.add("dragged-over");
-    evt.dataTransfer.dropEffect = "move";
+    if (evt.dataTransfer) evt.dataTransfer.dropEffect = "move";
   };
-  const onDragLeave = (evt: any) => {
-    let currentTarget = evt.currentTarget;
-    let newTarget = evt.relatedTarget;
+  const onDragLeave = (evt: DragEvent) => {
+    let currentTarget = evt.currentTarget as Element;
+    let newTarget = evt.relatedTarget as Element;
     if (newTarget.parentNode === currentTarget || newTarget === currentTarget)
       return;
     evt.preventDefault();
-    let element = evt.currentTarget;
+    let element = evt.currentTarget as Element;
     element.classList.remove("dragged-over");
   };
-  const onDragOver = (evt: any) => {
+  const onDragOver = (evt: DragEvent) => {
     evt.preventDefault();
-    evt.dataTransfer.dropEffect = "move";
+    if (evt.dataTransfer) evt.dataTransfer.dropEffect = "move";
   };
-  const onDrop = (evt: any, value: boolean, newStatus: string) => {
+  const onDrop = (evt: DragEvent, value: boolean, newStatus: string) => {
     evt.preventDefault();
-    evt.currentTarget.classList.remove("dragged-over");
-    let data = evt.dataTransfer.getData("text/plain");
+    let element = evt.currentTarget as Element;
+    element.classList.remove("dragged-over");
+    let data = evt.dataTransfer?.getData("text/plain");
     shelves.map((shelf: BookType) => {
-      if (shelf.id.toString() === data.toString()) {
+      if (shelf.id.toString() === data?.toString()) {
         updateBook({ ...shelf, status: newStatus });
         return { ...shelf, status: newStatus };
       } else {
@@ -105,11 +109,11 @@ const Shelves = () => {
     return (
       <div
         className={`${classType} small-box`}
-        onDragLeave={(e) => onDragLeave(e)}
-        onDragEnter={(e) => onDragEnter(e)}
-        onDragEnd={(e) => onDragEnd(e)}
-        onDragOver={(e) => onDragOver(e)}
-        onDrop={(e) => onDrop(e, false, statusshelf)}
+        onDragLeave={(e: any) => onDragLeave(e)}
+        onDragEnter={(e: any) => onDragEnter(e)}
+        onDragEnd={(e: any) => onDragEnd(e)}
+        onDragOver={(e: any) => onDragOver(e)}
+        onDrop={(e: any) => onDrop(e, false, statusshelf)}
       >
         <section className="drag_container">
           <h4>{headlabel}</h4>
@@ -122,8 +126,8 @@ const Shelves = () => {
                     key={book.name}
                     id={book.id}
                     draggable
-                    onDragStart={(e) => onDragStart(e)}
-                    onDragEnd={(e) => onDragEnd(e)}
+                    onDragStart={(e: any) => onDragStart(e)}
+                    onDragEnd={(e: any) => onDragEnd(e)}
                   >
                     <div className="card_right">
                       <div className="name">{book.name}</div>

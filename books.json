@@ -67,7 +67,7 @@
       "id": "5"
     },
     {
-      "status": "New Books",
+      "status": "Completed",
       "name": "Peter Pan",
       "author": "J.M. Barrie",
       "description": "Almost everyone knows the story of “Peter Pan” which is why this is an easy read. Being familiar with a story already helps the reader to understand the text better. This book is aimed at children, but it continues to be enjoyed by adults around the world too.",
@@ -115,7 +115,7 @@
       "author": "Arthur Conan Doyle",
       "description": "Sherlock Holmes is a fictional detective of the late 19th and early 20th centuries, who first appeared in publication in 1887. He was devised by British author and physician Sir Arthur Conan Doyle. A brilliant London-based detective, Holmes is famous for his prowess at using logic and astute observation to solve cases. He is perhaps the most famous fictional detective, and indeed one of the best known and most universally recognizable literary characters.",
       "genre": "detective",
-      "status": "In Progress",
+      "status": "New Books",
       "color": "orange",
       "imgsrc": "https://m.media-amazon.com/images/W/WEBP_402378-T1/images/I/51IQ2ESJAHL._SX302_BO1,204,203,200_.jpg",
       "pages": "1088",
@@ -175,7 +175,7 @@
     {
       "task": "Read a memoir",
       "color": "#ADFF2F",
-      "status": false,
+      "status": true,
       "id": "2"
     },
     {
